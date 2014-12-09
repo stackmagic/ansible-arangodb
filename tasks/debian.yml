@@ -1,0 +1,37 @@
+---
+
+- name: install apt-transport-https
+  apt: pkg='apt-transport-https' state='present'
+  tags: arangodb
+
+- include: debian7.yml
+  when: ansible_distribution_major_version == '7' or ansible_distribution_major_version == 'jessie/sid'
+  tags: arangodb
+
+- include: debian6.yml
+  when: ansible_distribution_major_version == '6'
+  tags: arangodb
+
+- name: install arangodb
+  apt: name='arangodb={{arangodb_version}}' state='present'
+  register: installed
+  tags: arangodb
+
+- name: enable arangodb
+  service: name='arangodb' enabled=yes
+  tags: arangodb
+
+- name: stop arangodb
+  service: name='arangodb' state='stopped'
+  when: installed.changed
+  tags: arangodb
+
+- name: run arangodb upgrade
+  shell: '/etc/init.d/arangodb upgrade'
+  when: installed.changed
+  tags: arangodb
+
+- name: start arangodb
+  service: name='arangodb' state='started'
+  when: installed.changed
+  tags: arangodb
