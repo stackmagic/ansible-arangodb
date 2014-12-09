@@ -23,15 +23,15 @@
 
 - name: stop arangodb
   service: name='arangodb' state='stopped'
-  when: installed.changed
+  when: installed.changed and arangodb_autoupgrade is defined and arangodb_autoupgrade
   tags: arangodb
 
 - name: run arangodb upgrade
   shell: '/etc/init.d/arangodb upgrade'
-  when: installed.changed
+  when: installed.changed and arangodb_autoupgrade is defined and arangodb_autoupgrade
   tags: arangodb
 
 - name: start arangodb
   service: name='arangodb' state='started'
-  when: installed.changed
+  when: installed.changed and arangodb_autoupgrade is defined and arangodb_autoupgrade
   tags: arangodb

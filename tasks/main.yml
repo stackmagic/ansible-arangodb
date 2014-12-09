@@ -3,3 +3,8 @@
 - include: debian.yml
   when: ansible_os_family == 'Debian'
   tags: arangodb
+
+- name: install configuration
+  template: src=arangod.conf.j2 dest=/etc/arangodb/arangod.conf owner=root group=root mode=0644
+  notify: restart arangodb
+  tags: arangodb

@@ -6,26 +6,43 @@ Installation and limited configuration of [triAGEND ArangoDB](https://www.arango
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+A Debian 6.x, 7.x or testing system. Other platforms are not (yet) supported. Feel free to fork-hack-pullrequest.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+For basic operation, you only need to know about 2 variables:
+
+* `arangodb_version` defines the version to be installed. Using '*' is possible but discouraged since arangodb requires to run an [upgrade]() when installing a newer version so upgrading should be supervised by a human.
+* `arangodb_autoupgrade` allows you to disregard the warning above and let the role invoke upgrade whenever a new version have been installed.
+
+To customize anything inside `/etc/arangodb/arangod.conf` please refer to [templates/arangod.conf.j2](templates/arangod.conf.j2) and [defaults/main.yml](defaults/main.yml).
+
+Other config files cannot be customized at this time.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+This role installs `apt-transport-https` on `debian` to fetch packages via https.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+To just install and run arangodb out-of-the-box, select your version and that's it:
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: stackmagic.arangodb, arangodb_version: '2.3.1' }
+
+To customize more settings
+
+TODO
+----
+
+* customize user/group (arangodb automatically sets up a user and group when installing their package already)
+* configure more settings (cluster and other config files)
+* maybe create databases/collections
+* add more platforms besides debian 6/7/testing
 
 License
 -------

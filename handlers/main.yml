@@ -1,2 +1,4 @@
 ---
-# handlers file for arangodb
+
+- name: restart arangodb
+  service: name='arangodb' state=restarted sleep=2

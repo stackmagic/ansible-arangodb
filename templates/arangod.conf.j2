@@ -1,0 +1,76 @@
+
+## ################################################ ##
+## THIS FILE IS MANAGED BY ANSIBLE - DO NOT TOUCH!! ##
+## ################################################ ##
+
+# ArangoDB configuration file
+#
+# Documentation:
+# https://docs.arangodb.com/ConfigureArango/README.html
+#
+
+[database]
+directory = {{ arangodb_database_directory }}
+# directory = @HOMEDRIVE@/@HOMEPATH@/arangodb/databases
+
+maximal-journal-size = {{ arangodb_database_maximaljournalsize }}
+
+[server]
+# Specify the endpoint for HTTP requests by clients.
+#  tcp://ipv4-address:port
+#  tcp://[ipv6-address]:port
+#  ssl://ipv4-address:port
+#  ssl://[ipv6-address]:port
+#  unix:///path/to/socket
+#
+# Examples:
+#   endpoint = tcp://0.0.0.0:8529
+#   endpoint = tcp://127.0.0.1:8529
+#   endpoint = tcp://localhost:8529
+#   endpoint = tcp://myserver.arangodb.com:8529
+#   endpoint = tcp://[::]:8529
+#   endpoint = tcp://[fe80::21a:5df1:aede:98cf]:8529
+#
+{% for endpoint in arangodb_server_endpoints %}endpoint = {{ endpoint }}
+{% endfor %}
+
+# resuse a port on restart or wait until it is freed by the operating system
+reuse-address = {{ arangodb_server_reuseaddress }}
+
+# disable authentication for the admin frontend
+disable-authentication = {{ arangodb_server_disableauthentication }}
+
+# number of server threads
+threads = {{ arangodb_server_threads }}
+
+# the user and group are normally set in the start script
+# uid = arangodb
+# gid = arangodb
+
+[scheduler]
+
+# number of threads used for I/O
+threads = {{ arangodb_scheduler_threads }}
+
+[javascript]
+startup-directory = {{ arangodb_javascript_startupdirectory }}
+app-path          = {{ arangodb_javascript_apppath }}
+# app-path = @HOMEDRIVE@/@HOMEPATH@/arangodb/apps
+
+# number of worker threads for V8
+v8-contexts = {{ arangodb_javascript_v8contexts }}
+
+[log]
+level    = {{ arangodb_log_level }}
+severity = {{ arangodb_log_severity }}
+file     = {{ arangodb_log_file }}
+
+[cluster]
+disable-dispatcher-kickstarter = {{ arangodb_cluster_disabledispatcherkickstarter }}
+disable-dispatcher-frontend    = {{ arangodb_cluster_disabledispatcherfrontend }}
+data-path                      = {{ arangodb_cluster_datapath }}
+log-path                       = {{ arangodb_cluster_logpath }}
+agent-path                     = {{ arangodb_cluster_agentpath }}
+arangod-path                   = {{ arangodb_cluster_arangodpath }}
+dbserver-config                = {{ arangodb_cluster_dbserverconfig }}
+coordinator-config             = {{ arangodb_cluster_coordinatorconfig }}

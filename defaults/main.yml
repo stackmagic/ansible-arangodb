@@ -1,2 +1,54 @@
 ---
-# defaults file for arangodb
+
+# ---------------------------------------------------------------------------
+# general config
+# ---------------------------------------------------------------------------
+
+# version to be installed
+#arangodb_version: 2.3.1
+
+# ---------------------------------------------------------------------------
+# role behaviour
+# ---------------------------------------------------------------------------
+
+# automatically call upgrade after the installed package has changed
+arangodb_autoupgrade: false
+
+# ---------------------------------------------------------------------------
+# arangod.conf
+# ---------------------------------------------------------------------------
+
+# database
+arangodb_database_directory: '/var/lib/arangodb'
+arangodb_database_maximaljournalsize: 33554432
+
+# server
+arangodb_server_endpoints:
+  - 'tcp://0.0.0.0:8529'
+
+arangodb_server_reuseaddress: 'false'
+arangodb_server_disableauthentication: 'yes'
+arangodb_server_threads: 4
+
+# io scheduler
+arangodb_scheduler_threads: 1
+
+# javascript
+arangodb_javascript_startupdirectory: '/usr/share/arangodb/js'
+arangodb_javascript_apppath:          '/var/lib/arangodb-apps'
+arangodb_javascript_v8contexts:       5
+
+# logging
+arangodb_log_level:    'info'
+arangodb_log_severity: 'human'
+arangodb_log_file:     '/var/log/arangodb/arangod.log'
+
+# cluster
+arangodb_cluster_disabledispatcherkickstarter: 'yes'
+arangodb_cluster_disabledispatcherfrontend:    'yes'
+arangodb_cluster_datapath:                     '/var/lib/arangodb/cluster'
+arangodb_cluster_logpath:                      '/var/log/arangodb/cluster'
+arangodb_cluster_agentpath:                    '/usr/lib/arangodb/etcd-arango'
+arangodb_cluster_arangodpath:                  '/usr/sbin/arangod'
+arangodb_cluster_dbserverconfig:               '/etc/arangodb/arangod.conf'
+arangodb_cluster_coordinatorconfig:            '/etc/arangodb/arangod.conf'
