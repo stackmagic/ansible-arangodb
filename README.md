@@ -1,7 +1,7 @@
-Role Name
-=========
+arangodb
+========
 
-A brief description of the role goes here.
+Installation and limited configuration of [triAGEND ArangoDB](https://www.arangodb.com) Multimodel NoSQL Database.
 
 Requirements
 ------------
@@ -30,9 +30,9 @@ Including an example of how to use your role (for instance, with variables passe
 License
 -------
 
-BSD
+Apache Software License 2.0
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+github: [stackmagic](https://github.com/stackmagic)
