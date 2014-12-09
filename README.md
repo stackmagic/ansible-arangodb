@@ -1,19 +1,19 @@
 arangodb
 ========
 
-Installation and limited configuration of [triAGEND ArangoDB](https://www.arangodb.com) Multimodel NoSQL Database.
+Installation and limited configuration of the [triAGENS ArangoDB](https://www.arangodb.com) Multi-Model NoSQL Database.
 
 Requirements
 ------------
 
-A Debian 6.x, 7.x or testing system. Other platforms are not (yet) supported. Feel free to fork-hack-pullrequest.
+A Debian `6.x`, `7.x` or `testing` system. Other platforms are not (yet) supported. Feel free to fork-hack-pullrequest.
 
 Role Variables
 --------------
 
 For basic operation, you only need to know about 2 variables:
 
-* `arangodb_version` defines the version to be installed. Using '*' is possible but discouraged since arangodb requires to run an [upgrade]() when installing a newer version so upgrading should be supervised by a human.
+* `arangodb_version` defines the version to be installed. Using `*` is possible but discouraged since arangodb requires to run a [manual upgrade](https://docs.arangodb.com/Installing/Upgrading.html) when installing a newer version so upgrading should be supervised by a human.
 * `arangodb_autoupgrade` allows you to disregard the warning above and let the role invoke upgrade whenever a new version have been installed.
 
 To customize anything inside `/etc/arangodb/arangod.conf` please refer to [templates/arangod.conf.j2](templates/arangod.conf.j2) and [defaults/main.yml](defaults/main.yml).
@@ -43,11 +43,6 @@ TODO
 * configure more settings (cluster and other config files)
 * maybe create databases/collections
 * add more platforms besides debian 6/7/testing
-
-License
--------
-
-Apache Software License 2.0
 
 Author Information
 ------------------
