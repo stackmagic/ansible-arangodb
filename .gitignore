@@ -1,0 +1,8 @@
+.gitignore
+ansible.cfg
+ansible
+ansp
+hosts
+roles
+site.yml
+ssh_config
