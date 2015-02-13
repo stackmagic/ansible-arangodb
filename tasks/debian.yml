@@ -17,7 +17,7 @@
   tags: arangodb
 
 - name: install arangodb
-  apt: name='arangodb={{arangodb_version}}' state='present'
+  apt: name='arangodb={{arangodb_version}}' state='present' #'
   register: installed
   tags: arangodb
 
