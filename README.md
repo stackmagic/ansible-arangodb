@@ -32,7 +32,7 @@ To just install and run arangodb out-of-the-box, select your version and that's 
 
     - hosts: servers
       roles:
-         - { role: stackmagic.arangodb, arangodb_version: '2.3.1' }
+         - { role: stackmagic.arangodb, arangodb_version: '2.4.3' }
 
 TODO
 ----
