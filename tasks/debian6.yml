@@ -1,9 +1,9 @@
 ---
 
-- name: add arangodb apt key
+- name: debian6 - add arangodb apt key
   apt_key: state=present id='89A14917' url='https://www.arangodb.com/repositories/arangodb2/Debian_6.0/Release.key'
   tags: arangodb
 
-- name: add arangodb apt repository
+- name: debian6 - add arangodb apt repository
   apt_repository: state=present update_cache=yes repo='deb https://www.arangodb.com/repositories/arangodb2/Debian_6.0/ /'
   tags: arangodb
